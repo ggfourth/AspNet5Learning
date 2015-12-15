@@ -1,7 +1,32 @@
-﻿@{
+﻿@model SimpleWebSiteNoAuthentication.Models.Person
+
+@{
     ViewData["Title"] = "Proba";
 }
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
 <p>Tova dali se aktualizira avtomati4no? Sega ve4e da</p>
+
+<ul>
+    <li>@Model.FirstName</li>
+    <li>@Model.LastName</li>
+    <li>@Model.Birthday</li>
+</ul>
+
+<form asp-controller="Home" asp-action="Proba" method="post">
+    <div asp-validation-summary="ValidationSummary.All"></div>
+
+    <label asp-for="FirstName">FirstName : </label>
+    <input asp-for="FirstName" type="text" />
+    <span asp-validation-for="FirstName"></span>
+
+    <label asp-for="LastName">LastName : </label>
+    <input asp-for="LastName" type="text" />
+    <span asp-validation-for="LastName"></span>
+
+    <label asp-for="Birthday">Birthday : </label>
+    <input asp-for="Birthday" type="text" />
+
+    <input type="submit" />
+</form>
