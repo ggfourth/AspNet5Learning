@@ -17,6 +17,7 @@ namespace SimpleWebSiteNoAuthentication
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
+                .AddJsonFile($"config.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
@@ -32,6 +33,9 @@ namespace SimpleWebSiteNoAuthentication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var color = Configuration.GetSection("color");
+            var color2 = Configuration["color"];
+            
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
